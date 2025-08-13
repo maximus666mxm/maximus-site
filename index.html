@@ -148,7 +148,7 @@ background-color: #00cc6a; /* Vert plus foncé au survol */
 .hero-image {
 width: 100%;
 height: auto;
-max-height: 85vh; /* limite la hauteur à 85% de l'écran */
+max-height: 95vh; /* limite la hauteur à 85% de l'écran */
 object-fit: contain;
 display: block;
 }
@@ -156,18 +156,23 @@ display: block;
 /* Conteneur des boutons */
 .button-group {
 position: absolute;
-top: 28%; /* ajuste pour placer sous "SACRIFICED" */
+top: 92%; /* place les boutons juste au bas de l'image */
 left: 50%;
 transform: translateX(-50%);
 display: flex;
-gap: 10px; /* espace entre les boutons */
+gap: 10px;
 z-index: 2;
+}
+
+.button-group .btn {
+font-size: 14px; /* texte plus petit */
+padding: 6px 14px; /* boutons plus compacts */
 }
 
 /* Version mobile */
 @media (max-width: 768px) {
 .button-group {
-top: 35%;
+top: 95%;
 flex-direction: column;
 align-items: center;
 
