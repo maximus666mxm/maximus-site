@@ -145,11 +145,32 @@ color: black;
 .btn-green:hover {
 background-color: #00cc6a; /* Vert plus foncé au survol */
 }
-    .hero-image {
+.hero-image {
 width: 100%;
-max-height: 95vh;
+height: auto;
+max-height: 85vh; /* limite la hauteur à 85% de l'écran */
 object-fit: contain;
 display: block;
+}
+
+/* Conteneur des boutons */
+.button-group {
+position: absolute;
+top: 28%; /* ajuste pour placer sous "SACRIFICED" */
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 10px; /* espace entre les boutons */
+z-index: 2;
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+.button-group {
+top: 35%;
+flex-direction: column;
+align-items: center;
+
 }
   </style>
 </head>
