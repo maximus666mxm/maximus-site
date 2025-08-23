@@ -179,6 +179,27 @@ flex-direction: column;
 align-items: center;
 
 }
+  /* Bouton Telegram */
+.btn-blue {
+background-color: #0a84ff; /* Bleu Telegram */
+color: #fff;
+}
+.btn-blue:hover {
+background-color: #006edc; /* Bleu plus foncé */
+}
+
+/* Bouton Copy */
+.btn-copy {
+margin-left: 8px;
+background-color: #555;
+color: #fff;
+border-radius: 6px;
+padding: 4px 10px;
+cursor: pointer;
+}
+.btn-copy:hover {
+background-color: #777;
+}
   </style>
 </head>
 <body>
@@ -209,4 +230,23 @@ href="https://jup.ag/swap/SOL-3LwUJxByVuLcVC9T6GXaQ8etgB1XQz7wTMSzUeSscnmw"
 target="_blank">Buy on Jupiter</a>
 </div>
 </div>
+  
+<div style="text-align:center; margin-top:20px;">
+<p style="color:#fff; font-size:14px;">
+Contract: <code id="tokenAddress">3LwUJxByVuLcVC9T6GXaQ8etgB1XQz7wTMSzUeSscnmw</code>
+<button class="btn btn-dark btn-copy" onclick="copyToken()">Copy</button>
+</p>
+</div>
+
+<script>
+function copyToken() {
+const text = document.getElementById('tokenAddress').innerText.trim();
+navigator.clipboard.writeText(text).then(() => {
+const btn = document.querySelector('.btn-copy');
+const old = btn.textContent;
+btn.textContent = 'Copied!';
+setTimeout(() => { btn.textContent = old; }, 1500);
+});
+}
+</script>
 </body>
