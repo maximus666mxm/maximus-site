@@ -180,8 +180,8 @@ z-index: 2;
 }
 
 .button-group .btn {
-font-size: 14px; /* texte plus petit */
-padding: 6px 14px; /* boutons plus compacts */
+font-size: 10px; /* texte plus petit */
+padding: 4px 10px; /* boutons plus compacts */
 }
 
 /* Version mobile */
@@ -258,17 +258,36 @@ background-color: #777;
 /* Whitepaper blanc */
 .btn-whitepaper { background: #fff; color: #000; border: 2px solid #ccc; }
 .btn-whitepaper:hover { border-color: #666; }
-  
-.contract-overlay{
+  .contract-overlay {
   position: absolute;
-  top: 72%;            /* (était 75) remonte le bloc au-dessus des boutons */
-  left: 50%;
+  top: 62%;          /* Ajuste la hauteur */
+  left: 50%;         /* Centre horizontalement */
   transform: translateX(-50%);
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 6px;  /* un peu d’air au-dessus des boutons */
+  background: rgba(0,0,0,0.4);  /* Fond semi-transparent */
+  padding: 6px 12px;
+  border-radius: 6px;
+  z-index: 3;        /* Reste au-dessus de l'image */
+}
+
+.contract-overlay {
+  position: absolute;
+  top: 62%;                 /* ajuste la hauteur : joue entre 60% et 65% */
+  left: 50%;                /* centre horizontalement */
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  background: rgba(0,0,0,0.4);  /* fond semi-transparent pour bien lire */
+  padding: 6px 12px;
+  border-radius: 6px;
+  z-index: 3;               /* reste au-dessus de l'image */
+}
+
 }
   </style>
 </head>
