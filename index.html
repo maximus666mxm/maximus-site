@@ -259,19 +259,35 @@ background-color: #777;
 .btn-whitepaper { background: #fff; color: #000; border: 2px solid #ccc; }
 .btn-whitepaper:hover { border-color: #666; }
 </style>
+/* Overlay pour l'adresse du contrat */
+.contract-overlay {
+  position: absolute;
+  top: 75%;              /* ajuste la hauteur, plus petit = plus haut */
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
   </style>
 </head>
 <body>
 <div class="hero-container">
-<!-- Image principale -->
-<img src="assets/hero.jpg" alt="Maximus Banner" class="hero-image">
+  <img src="assets/hero.jpg" alt="Maximus Banner" class="hero-image">
 
-<!-- Contract Address au-dessus des boutons -->
-<div style="text-align:center; margin:15px 0;">
-  <p style="color:#fff; font-size:16px; font-weight:bold;">
-    Contract: <code id="tokenAddress">3LwUJxByVuLCV9T6GxaQ8etgB1XQz7wTMtS2UeSscnmx</code>
-  </p>
-  <button class="btn btn-dark btn-copy" onclick="copyToken()" style="margin-left:10px;">Copy</button>
+  <!-- Contract address en overlay -->
+  <div class="contract-overlay">
+    <p>
+      Contract: <code id="tokenAddress">3LwUJxByVuLCV9T6GxaQ8etgB1XQz7wTMtS2UeSscnmx</code>
+    </p>
+    <button class="btn btn-dark btn-copy" onclick="copyToken()">Copy</button>
+  </div>
+
+  <!-- Boutons -->
+  <div class="button-group">
+    ...
+  </div>
 </div>
   
   <div class="button-group">
