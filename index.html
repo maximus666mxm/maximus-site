@@ -200,6 +200,52 @@ cursor: pointer;
 .btn-copy:hover {
 background-color: #777;
 }
+  .btn-copy:hover {
+  background-color: #777;
+}
+
+/* Groupe de boutons centré */
+.button-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: -10px; /* remonte légèrement les boutons */
+}
+
+/* Style de base */
+.btn {
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform .2s;
+  display: inline-block;
+}
+.btn:hover { transform: scale(1.05); }
+
+/* Rouge (DEX, Telegram) */
+.btn-red { background: #c40000; color: #fff; border: none; }
+.btn-red:hover { background: #ff1a1a; }
+
+/* Noir (Twitter) */
+.btn-dark { background: #000; color: #fff; border: none; }
+.btn-dark:hover { background: #333; }
+
+/* Raydium bleu-mauve */
+.btn-raydium {
+  background: linear-gradient(90deg, #6f00ff, #00c3ff);
+  color: #fff; border: none;
+  box-shadow: 0 0 15px rgba(111,0,255,.6);
+}
+.btn-raydium:hover {
+  box-shadow: 0 0 22px rgba(111,0,255,.9);
+}
+
+/* Whitepaper blanc */
+.btn-whitepaper { background: #fff; color: #000; border: 2px solid #ccc; }
+.btn-whitepaper:hover { border-color: #666; }
+</style>
   </style>
 </head>
 <body>
@@ -207,11 +253,9 @@ background-color: #777;
 <!-- Image principale -->
 <img src="assets/hero.jpg" alt="Maximus Banner" class="hero-image">
 
-<!-- Boutons -->
 <div class="button-group">
-
   <!-- DEXTools -->
-  <a class="btn btn-red" href="https://www.dextools.io/app" target="_blank">
+  <a class="btn btn-red" href="https://www.dextools.io/app/en/token/maximusmxm?t=1756600134893
     View on DEXTools
   </a>
 
@@ -226,7 +270,9 @@ background-color: #777;
   </a>
 
   <!-- Raydium -->
-  <a class="btn btn-raydium" href="https://raydium.io/swap/?inputMint=sol&outputMint=3LwUJxByVuLcVC9T6GXaQ8etgB1XQz7wTMSzUeSscnmw&referrer=DbDQQ9mvppGjpQPrN4HsvddDvTExSccAsvvgZWjEx7Zx
+  <a class="btn btn-raydium"
+     href="https://raydium.io/swap/?inputMint=sol&outputMint=3LwUJxByVuLcVC9T6GXaQ8etgB1XQz7wTMSzUeSscnmw&referrer=DbDQQ9mvppGjpQPrN4HsvddDvTExSccAsvvgZWjEx7Zx
+     target="_blank">
     Buy on Raydium
   </a>
 
@@ -234,6 +280,7 @@ background-color: #777;
   <a class="btn btn-whitepaper" href="whitepaper.html" target="_blank">
     Whitepaper
   </a>
+</div>
 
 </div>
 </div>
