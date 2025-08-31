@@ -158,12 +158,12 @@
   background-color: #e6e6e6;
 }
 .hero-image {
-  display: block;         /* bloc */
-  margin: 0 auto;         /* centre horizontalement */
-  width: 100%;            /* occupe toute la largeur */
+  width: 100%;
   height: auto;
-  max-height: 90vh;       /* un peu moins haut pour respirer */
-  object-fit: cover;      /* remplit l’espace (peut rogner un peu) */
+  max-height: 95vh; /* garde la hauteur max à 95% */
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 .hero-container {
 position: relative; /* permet aux boutons de se positionner par rapport à l'image */
