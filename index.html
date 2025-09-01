@@ -1,373 +1,153 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maximus ($MXM)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --bg:#0c0c0f;
-      --card:#121216;
-      --muted:#c9c9cf;
-      --text:#f5f5f7;
-      --red:#e0362d;
-      --button:#1f1f25;
+    /* ==== Variables couleurs ==== */
+    :root {
+      --bg: #0c0c0f;
+      --card: #121216;
+      --muted: #c9c9cf;
+      --text: #f5f5f7;
+      --red: #e0362d;
+      --button: #1f1f25;
       --ring: rgba(224,54,45,.35);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1000px 600px at 65% -10%, rgba(224,54,45,.15), transparent 60%),
-                  linear-gradient(180deg, #0c0c0f 0%, #0a0a0c 100%);
-      color:var(--text);
-      line-height:1.6;
+
+    /* ==== Reset & Base ==== */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #0a0a0a;
+      color: var(--text);
+      line-height: 1.6;
     }
-    .wrap{
-      max-width:1440px;
-      margin:32px auto;
-      padding:0 16px;
+
+    /* ==== HERO IMAGE ==== */
+    .hero-container {
+      position: relative;
+      max-width: 1300px;
+      margin: 0 auto;
     }
-    .card{
-      position:relative;
-      background: var(--card);
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,.45);
-      padding:28px;
-      isolation:isolate;
-      min-height: 520px;
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 95vh;
+      object-fit: contain;
     }
-    /* background image on the right */
-    .card::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(90deg, rgba(12,12,15,0.95) 0%, rgba(12,12,15,0.8) 35%, rgba(12,12,15,0.2) 60%, rgba(12,12,15,0.0) 75%),
-        url('assets/hero.jpg') right center / cover no-repeat;
-      z-index:-1;
+
+    /* ==== Contract overlay ==== */
+    .address-overlay {
+      position: absolute;
+      left: 50%;
+      top: 6%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      background: rgba(0,0,0,0.35);
+      padding: 6px 12px;
+      border-radius: 6px;
+      z-index: 3;
     }
-    header{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:18px;
+    .btn-copy {
+      margin-left: 10px;
+      background: #555;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
     }
-    .brand-mark{
-      width:40px; height:40px; border-radius:8px; display:grid; place-items:center;
-      background:#1b1b21;
-      border:1px solid #24242a;
-      font-weight:900;
-      letter-spacing:.5px;
+    .btn-copy:hover { background: #777; }
+
+    /* ==== Buttons group ==== */
+    .button-group {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 2.5%;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 2;
     }
-    .headline{
-      position:absolute;
-      right:24px;
-      top:24px;
-      max-width: 320px;
-      text-align:right;
-      font-weight:900;
-      font-size: clamp(22px, 3.2vw, 36px);
-      line-height:1.05;
-      color:var(--red);
-      text-transform:uppercase;
-      filter: drop-shadow(0 4px 10px rgba(224,54,45,.15));
+    .btn {
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      min-width: 160px;
+      text-align: center;
+      border: 1px solid transparent;
+      box-shadow: 0 1px 2px rgba(0,0,0,.25);
+      backdrop-filter: blur(2px);
     }
-    .actions{
-      display:flex; gap:12px; flex-wrap:wrap;
-      margin:12px 0 22px;
-    }
-    .btn{
-      appearance:none; border:0; cursor:pointer;
-      padding:12px 18px; border-radius:999px;
-      font-weight:700; letter-spacing:.2px;
-      display:inline-flex; align-items:center; gap:10px;
-      text-decoration:none; color:#fff; transition: transform .04s ease, box-shadow .2s ease;
-      box-shadow: 0 6px 20px rgba(0,0,0,.35);
-    }
-    .btn:active{ transform: translateY(1px); }
-    .btn-red{ background: var(--red); }
-    .btn-dark{ background: var(--button); border:1px solid #2a2a31; }
-    .section{
-      max-width: 540px;
-      background: rgba(18,18,22,.6);
-      border:1px solid #23232a;
-      border-radius:16px;
-      padding:18px 18px;
-      backdrop-filter: blur(4px);
-    }
-    h2{ margin:0 0 10px; font-size:26px; line-height:1.15; }
-    ul{ margin:0; padding-left:20px; }
-    li{ margin: 6px 0; }
-    .muted{ color: var(--muted); }
-    .solana{
-      display:flex; align-items:center; gap:10px; margin-top:14px; font-weight:600;
-    }
-    /* simple CSS Solana-esque icon */
-    .sol-icon{ width:22px; height:18px; position:relative; }
-    .sol-icon::before, .sol-icon::after, .sol-mid{
-      content:""; position:absolute; left:0; right:0; height:6px; border-radius:2px;
-      background: linear-gradient(90deg, #94f9e3, #6d86ff);
-      box-shadow: 0 0 10px rgba(148,249,227,.4);
-    }
-    .sol-icon::before{ top:0; transform:skewX(-12deg); }
-    .sol-mid{ top:6px; transform:skewX(-12deg); }
-    .sol-icon::after{ bottom:0; transform:skewX(-12deg); }
-    .totals{
-      margin-top:18px;
-      padding:18px;
-      border-radius:16px;
-      background:#0f0f13;
-      border:1px dashed #2a2a33;
-      max-width:100%;
-    }
-    .totals h3{ margin:0 0 8px; font-size:22px; }
-    .small{ font-size:14px; }
-    @media (max-width: 800px){
-      .card{ padding:22px; min-height: 620px; }
-      .headline{ position:static; text-align:left; margin-bottom:12px; }
-      .card::after{
-        background:
-          linear-gradient(180deg, rgba(12,12,15,0.9) 0%, rgba(12,12,15,0.6) 50%, rgba(12,12,15,0) 85%),
-          url('assets/hero.jpg') center 15% / cover no-repeat;
+    .btn-red { background: #c40000; color:#fff; }
+    .btn-dark { background: #000; color:#fff; }
+    .btn-raydium { background: linear-gradient(90deg,#2E00F9,#7D2AE8); color:#fff; }
+    .btn-whitepaper { background:#fff; color:#000; border:2px solid #ccc; }
+
+    /* ==== Responsive ==== */
+    @media (max-width: 820px) {
+      .address-overlay {
+        position: static;
+        transform: none;
+        margin: 10px auto 0;
+        display: inline-block;
       }
-      .section, .totals{ max-width:100%; }
+      .button-group {
+        position: static;
+        transform: none;
+        margin: 12px auto;
+      }
     }
-/* Bouton Raydium (bleu/mauve) */
-.btn-raydium {
-  background-color: #8a2be2; /* Violet/bleu Raydium */
-  color: #fff;
-  border: none;
-}
-.btn-raydium:hover {
-  background-color: #6a1bb9; /* nuance plus foncée */
-}
-
-/* Bouton Whitepaper (blanc) */
-.btn-whitepaper {
-  background-color: #ffffff;
-  color: #000;
-  border: none;
-}
-.btn-whitepaper:hover {
-  background-color: #e6e6e6;
-}
-.hero-image {
-  width: 100%;
-  height: auto;
-  max-height: 95vh; /* garde la hauteur max à 95% */
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-}
-.hero-container {
-position: relative; /* permet aux boutons de se positionner par rapport à l'image */
-}
-/* Conteneur des boutons */
-.button-group {
-position: absolute;
-top: 92%; /* place les boutons juste au bas de l'image */
-left: 50%;
-transform: translateX(-50%);
-display: flex;
-gap: 10px;
-z-index: 2;
-}
-
-.button-group .btn {
-font-size: 10px; /* texte plus petit */
-padding: 4px 10px; /* boutons plus compacts */
-}
-
-/* Version mobile */
-@media (max-width: 768px) {
-.button-group {
-top: 95%;
-flex-direction: column;
-align-items: center;
-
-}
-  /* Bouton Telegram */
-.btn-blue {
-background-color: #0a84ff; /* Bleu Telegram */
-color: #fff;
-}
-.btn-blue:hover {
-background-color: #006edc; /* Bleu plus foncé */
-}
-
-/* Bouton Copy */
-.btn-copy {
-margin-left: 8px;
-background-color: #555;
-color: #fff;
-border-radius: 6px;
-padding: 4px 10px;
-cursor: pointer;
-}
-.btn-copy:hover {
-background-color: #777;
-}
-  .btn-copy:hover {
-  background-color: #777;
-}
-
-/* Groupe de boutons centré */
-.button-group {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: -10px; /* remonte légèrement les boutons */
-}
-
-/* Style de base */
-.btn {
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: transform .2s;
-  display: inline-block;
-}
-.btn:hover { transform: scale(1.05); }
-
-/* Rouge (DEX, Telegram) */
-.btn-red { background: #c40000; color: #fff; border: none; }
-.btn-red:hover { background: #ff1a1a; }
-
-/* Noir (Twitter) */
-.btn-dark { background: #000; color: #fff; border: none; }
-.btn-dark:hover { background: #333; }
-
-/* Raydium bleu-mauve */
-.btn-raydium {
-  background: linear-gradient(90deg, #6f00ff, #00c3ff);
-  color: #fff; border: none;
-  box-shadow: 0 0 15px rgba(111,0,255,.6);
-}
-.btn-raydium:hover {
-  box-shadow: 0 0 22px rgba(111,0,255,.9);
-}
-
-/* Whitepaper blanc */
-.btn-whitepaper { background: #fff; color: #000; border: 2px solid #ccc; }
-.btn-whitepaper:hover { border-color: #666; }
-  .contract-overlay {
-  position: absolute;
-  top: 62%;          /* Ajuste la hauteur */
-  left: 50%;         /* Centre horizontalement */
-  transform: translateX(-50%);
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-  background: rgba(0,0,0,0.4);  /* Fond semi-transparent */
-  padding: 6px 12px;
-  border-radius: 6px;
-  z-index: 3;        /* Reste au-dessus de l'image */
-}
-
-.contract-overlay {
-  position: absolute;
-  top: 62%;                 /* ajuste la hauteur : joue entre 60% et 65% */
-  left: 50%;                /* centre horizontalement */
-  transform: translateX(-50%);
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-  background: rgba(0,0,0,0.4);  /* fond semi-transparent pour bien lire */
-  padding: 6px 12px;
-  border-radius: 6px;
-  z-index: 3;               /* reste au-dessus de l'image */
-}
-
-}
   </style>
 </head>
 <body>
-<div
-  /* Image & conteneur */
-.hero-container { position: relative; }
-.hero-image {
-  display:block; margin:0 auto;
-  width:100%; height:auto; max-height:95vh; object-fit:contain;
-}
 
-/* Adresse + Copy AU-DESSUS de "Minted & Forged" */
-.address-overlay{
-  position:absolute; left:50%; transform:translateX(-50%);
-  top:64%;            /* ← ajuste: 62–68% selon ton rendu */
-  color:#fff; font-size:16px; font-weight:bold; text-align:center;
-  background:rgba(0,0,0,.35); padding:6px 12px; border-radius:6px;
-  z-index:3;
-}
-.address-overlay code{ font-weight:700; }
-.btn-copy{
-  margin-left:10px; background:#555; color:#fff; border:none;
-  border-radius:6px; padding:4px 10px; cursor:pointer;
-}
-.btn-copy:hover{ background:#777; }
+  <!-- HERO -->
+  <div class="hero-container">
+    <img src="assets/hero.jpg" alt="Maximus Bull Gladiator AI" class="hero-image">
 
-/* Groupe de BOUTONS collé au BAS DE L’IMAGE (centré) */
-.button-group{
-  position:absolute; left:50%; transform:translateX(-50%);
-  bottom:2.5%;       /* ← ajuste la hauteur depuis le BAS de l’image */
-  display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
-  z-index:2;
-}
+    <!-- Adresse + Copy -->
+    <div class="address-overlay">
+      Contract:
+      <code id="tokenAddress">3LwUJxByVuLCV9T6GxaQ8etgB1XQz7wTMtS2UeSscnmx</code>
+      <button class="btn-copy" onclick="copyToken()">Copy</button>
+    </div>
 
-/* Boutons – base */
-.btn{ font-weight:bold; padding:10px 20px; border-radius:6px;
-      text-decoration:none; transition:transform .2s; display:inline-block; }
-.btn:hover{ transform:scale(1.05); }
+    <!-- Boutons -->
+    <div class="button-group">
+      <a href="https://www.dextools.io/app/en/token/maximusmxm" target="_blank" class="btn btn-red">View on DEXTools</a>
+      <a href="https://twitter.com/maximusmxm" target="_blank" class="btn btn-dark">Follow on X</a>
+      <a href="https://t.me/maximusarenamxmchat" target="_blank" class="btn btn-red">Join Telegram</a>
+      <a href="https://raydium.io/swap/?inputMint=sol&outputMint=3LwUJxByVuLCV9T6GxaQ8etgB1XQz7wTMtS2UeSscnmx" target="_blank" class="btn btn-raydium">Buy on Raydium</a>
+      <a href="whitepaper.html" target="_blank" class="btn btn-whitepaper">Whitepaper</a>
+    </div>
+  </div>
 
-/* Couleurs */
-.btn-red{ background:#c40000; color:#fff; border:none; }
-.btn-red:hover{ background:#ff4a4a; }
-
-.btn-dark{ background:#000; color:#fff; border:none; }
-.btn-dark:hover{ background:#333; }
-
-.btn-raydium{
-  background:linear-gradient(90deg,#6f00ff,#00c3ff);
-  color:#fff; border:none; box-shadow:0 0 15px rgba(111,0,255,.6);
-}
-.btn-raydium:hover{ box-shadow:0 0 22px rgba(111,0,255,.9); }
-
-.btn-whitepaper{ background:#fff; color:#000; border:2px solid #ccc; }
-.btn-whitepaper:hover{ border-color:#666; }
-
-/* Responsive */
-@media (max-width: 992px){
-  .address-overlay{ top:60%; font-size:15px; }
-  .btn{ padding:8px 16px; font-size:14px; }
-}
-@media (max-width: 600px){
-  .address-overlay{ top:57%; font-size:14px; }
-  .button-group{ bottom:3.5%; gap:8px; }
-  .btn{ padding:7px 14px; font-size:13px; }
-}
-</div>
-
-</div>
-</div>
-  
-<script>
-function copyToken() {
-const text = document.getElementById('tokenAddress').innerText.trim();
-navigator.clipboard.writeText(text).then(() => {
-const btn = document.querySelector('.btn-copy');
-const old = btn.textContent;
-btn.textContent = 'Copied!';
-setTimeout(() => { btn.textContent = old; }, 1500);
-});
-}
-</script>
+  <!-- Script copy -->
+  <script>
+    function copyToken(){
+      const text = document.getElementById('tokenAddress').innerText.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.btn-copy');
+        const old = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = old; }, 1200);
+      });
+    }
+  </script>
 </body>
+</html>
